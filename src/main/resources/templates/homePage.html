@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+    <title>FamilyMember Tree Application</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p>Show All Members <a href="http://localhost:8080/familyMember/all">here</a></p>
+    
+    <div th:switch="${familyMemberEntites}">
+    <h2 th:case="null">No members yet!</h2>
+        <div th:case="*">
+            <h2>Family Members</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="familyMember : ${familyMemberEntites}">
+                    <td th:text="${familyMember.id}"></td>
+                    <td th:text="${familyMember.firstName}"></td>
+                    <td th:text="${familyMember.lastName}"></td>
+                    <td th:text="${familyMember.gender}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/signup">Add a new user</a></p>
+</div>
+</body>
+</html>

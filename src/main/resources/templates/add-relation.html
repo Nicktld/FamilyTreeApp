@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Add Relation</title>
+        <meta person1="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/shards.min.css">
+    </head>
+    <body>
+        <div class="container my-5">
+            <h2 class="mb-5">New Relaiton</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="#" th:action="@{/relation/person/addrelation}" th:object="${relationEntity}" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="person1" class="col-form-label">person1</label>
+                                <input type="text" th:field="*{person1}" class="form-control" id="person1" placeholder="person1">
+                                <span th:if="${#fields.hasErrors('person1')}" th:errors="*{person1}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="person2" class="col-form-label">person2</label>
+                                <input type="text" th:field="*{person2}" class="form-control" id="person2" placeholder="person2">
+                                <span th:if="${#fields.hasErrors('person2')}" th:errors="*{person2}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="relationName" class="col-form-label">relationName</label>
+                                <input type="text" th:field="*{relationName}" class="form-control" id="relationName" placeholder="relationName">
+                                <span th:if="${#fields.hasErrors('relationName')}" th:errors="*{relationName}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="relationNameVice" class="col-form-label">relationNameVice</label>
+                                <input type="text" th:field="*{relationNameVice}" class="form-control" id="relationNameVice" placeholder="relationNameVice">
+                                <span th:if="${#fields.hasErrors('relationNameVice')}" th:errors="*{relationNameVice}" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-5">
+                                <input type="submit" class="btn btn-primary" value="Add Relation">
+                            </div>
+                        </div>    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

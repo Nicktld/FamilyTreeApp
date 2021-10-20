@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FamilyMemberTree</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready( function () {
+		$("#FamilyMemberForm").submit( function () {
+			alert("Inside Function Call!")
+			var formdata = $(this).serialize();
+			$.ajax({
+			    type: "POST",
+			    url: "http://localhost:8080/familyMember",
+			    data: formdata,
+			    success : function(data) {
+					alert(data);
+				}
+			 });
+			return false;
+		});
+	});
+</script>
+
+<style>
+.note {
+  font-size: 120%;
+  color: red;
+}
+</style>
+</head>
+<body>
+
+<h1>Welcome to the FaimilyMemberTree Application</h1>
+
+<p>This is a paragraph.</p>
+
+<form id="FamilyMemberForm">
+  <label for="firstName">First name:</label>
+  <input type="text" id="firstName" name="firstName">&nbsp;&nbsp;
+  <label for="lastName">Last name:</label>
+  <input type="text" id="lastName" name="lastName">&nbsp;&nbsp;
+  <label for="gender">Gender:</label>
+  <input type="text" id="gender" name="gender">&nbsp;&nbsp;
+  <input type="submit" value="Submit">
+</form> 
+
+
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = Date()">
+Click me to display Date and Time.</button>
+
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
+
+<p id="demo"></p>
+
+</body>
+</html>
