@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.hu.familyTree.db.entities.*;
 import com.hu.familyTree.db.repos.FamilyMemberRepos;
 import com.hu.familyTree.services.FamilyMemberService;
+import com.hu.familyTree.services.RelationService;
 
 @RestController
 @RequestMapping("/api/familyMember")
@@ -15,10 +16,13 @@ public class FamilyMemberController {
 	@Autowired
 	FamilyMemberService familyMemberService;
 	
+	@Autowired
+	RelationService relationService;
+	
 	@GetMapping
 	public FamilyMemberEntity getFamilyMemberByFirstNameLastName(
-			@RequestParam(required=true) String firstName,
-			@RequestParam(required=true) String lastName) {
+			@RequestParam(name="firstName", required=true) String firstName,
+			@RequestParam(name="lastName", required=true) String lastName) {
 		
 		return familyMemberService.getFamilyMemberByFirstNameLastName(firstName, lastName);
 	}
@@ -37,9 +41,9 @@ public class FamilyMemberController {
 
 	@PostMapping
 	public String addFamilyMember(
-			@RequestParam(required=true) String firstName,
-			@RequestParam(required=true) String lastName,
-			@RequestParam(required=true) String gender) {
+			@RequestParam(name="firstName", required=true) String firstName,
+			@RequestParam(name="lastName", required=true) String lastName,
+			@RequestParam(name="gender", required=true) String gender) {
 		String resStr = familyMemberService.addFamilyMember(firstName, lastName, gender);
 		return resStr;
 	}
@@ -47,9 +51,9 @@ public class FamilyMemberController {
 	@PutMapping("/{id}")
 	public String editFamilyMember(
 			@PathVariable Long id,
-			@RequestParam(required=false) String firstName,
-			@RequestParam(required=false) String lastName,
-			@RequestParam(required=false) String gender) {
+			@RequestParam(name="firstName", required=false) String firstName,
+			@RequestParam(name="lastName", required=false) String lastName,
+			@RequestParam(name="gender", required=false) String gender) {
 		String resStr = familyMemberService.editFamilyMember(id, firstName, lastName, gender);
 		return resStr;
 	}
@@ -57,7 +61,8 @@ public class FamilyMemberController {
 	@DeleteMapping("/{id}")
 	public String deleteFamilyMember(
 			@PathVariable Long id) {
-		String resStr = familyMemberService.deleteFamilyMember(id);
+		String resStr = relationService.deleteRelationByPerson(id);
+		resStr += familyMemberService.deleteFamilyMember(id);
 		return resStr;
 	}
 }
