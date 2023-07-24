@@ -1,1 +1,3 @@
 This file is testing Git Rebase.
+
+Add a second line to test whether Pull request gets updated after rebase!
